@@ -3,13 +3,14 @@
 import joblib 
 
 
-loaded_model = joblib.load(filename)
+def prediction(score):
+   math, read, write = score.split(",")
+   math = int(math)
+   read = int(read)
+   write = int(write)
+   vector = np.array([[math], [read], [write]])
+   scores = vector.transpose()
 
-result = loaded_model.score(X_test, Y_test)
-
-print(result)
-
-
-def my_prediction(scores):
-    prediction = model.predict(scores)
-    return prediction
+   loaded_model = joblib.load('svc_model.pkl')
+   prediction = loaded_model.predict(scores)
+   return prediction
