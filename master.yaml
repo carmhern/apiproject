@@ -12,12 +12,12 @@ info:
   license:
     name: Apache
 paths:
-  /scores/<score>:
+  /scores/<score>:  
     get:  
       tags:
-        - prediction
-      operationId: lunch_predictor.prediction
-      description: 'returns math, reading, and writing scores' #change
+        - scores
+      operationId: lunch_predictor.get_scores
+      description: 'returns math, reading, and writing scores' 
       responses:
         '200':
           description: 'reading, writing, math scores'
@@ -27,21 +27,21 @@ paths:
                 $ref: '#/components/schemas/scores'
         '405':
           description: 'not correct amount of scores'
-#  /prediction:
- #   get:
-  #    tags:
-   #     - prediction
-    #  operationId: lunch_predictor.prediction
-     # description: returns the predicted lunch
-      #responses:
-       # '200':
-        #  description: 'returns predicted lunch'
- #         content:
-  #          application/json:
-   #           schema:
-    #            $ref: '#/components/schemas/prediction'
+  /prediction/<score>:  
+    get:
+      tags:
+        - prediction
+      operationId: lunch_predictor.prediction
+      description: returns the predicted lunch
+      responses:
+        '200':
+          description: 'returns predicted lunch'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/prediction'
 servers:
-  - url: 'http://localhost:8080/carmhern'
+  - url: 'http://localhost:8080/'
 components:
   schemas:
     scores:
